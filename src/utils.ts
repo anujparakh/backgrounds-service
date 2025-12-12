@@ -50,11 +50,12 @@ export async function returnDownloadedImage(
     const extension = image.imageUrl.split('.').pop()?.toLowerCase();
     const contentType = getContentTypeFromExtension(extension);
 
+    const identifier = image.metadata?.identifier ?? 'unknown';
     return new Response(imageBuffer, {
       headers: {
         'Content-Type': contentType,
         'Cache-Control': 'public, max-age=31536000', // Cache for 1 year
-        'X-Identifier': image.metadata?.identifier || 'unknown',
+        'X-Identifier': identifier,
       },
     });
   } catch (error) {

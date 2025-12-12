@@ -6,7 +6,7 @@ export enum ImageSource {
 export type ImageResponse = {
   imageUrl: string;
   source: ImageSource;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, string>;
 };
 
 export type Env = {

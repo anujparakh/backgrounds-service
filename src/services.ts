@@ -10,7 +10,7 @@ export async function getRandomBackgroundImage(
   env: Env,
 ): Promise<ImageResponse | null> {
   switch (source) {
-    case ImageSource.CHROMECAST:
+    case ImageSource.CHROMECAST: {
       let result: ImageResponse | null = null;
       let attempts = 0;
       const maxAttempts = 10; // Prevent infinite loop
@@ -22,6 +22,7 @@ export async function getRandomBackgroundImage(
       }
 
       return result;
+    }
     default:
       return null;
   }
@@ -33,9 +34,10 @@ export async function getBackgroundImage(
   env: Env,
 ): Promise<ImageResponse | null> {
   switch (source) {
-    case ImageSource.CHROMECAST:
+    case ImageSource.CHROMECAST: {
       const toReturn = getChromecastImageByIdentifier(identifier);
       return await hydrateImageResponse(toReturn, env);
+    }
     default:
       return null;
   }
