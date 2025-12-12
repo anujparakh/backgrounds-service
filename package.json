@@ -4,7 +4,7 @@
   "description": "A Cloudflare Worker with Hono and TypeScript",
   "main": "src/app.ts",
   "scripts": {
-    "dev": "wrangler dev --port 3003",
+    "dev": "wrangler dev --port 3004",
     "deploy": "wrangler deploy",
     "clean": "rm -rf dist",
     "lint": "eslint src --ext .ts",

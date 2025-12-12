@@ -12,8 +12,7 @@ export const routes = new Hono<{ Bindings: Env }>();
 // Base route, return a random image from every source
 routes.get('/', async (context) => {
   const image = await getRandomBackgroundImage(ImageSource.CHROMECAST, context.env);
-  console.log(image);
-  return returnDownloadedImage(image, context);
+  return returnDownloadedImage(image, context, false); // do not cache random images
 });
 
 // Get random image by source
@@ -43,7 +42,8 @@ routes.get('/:source', async (context) => {
 
   // Return based on type parameter
   if (typeParam === 'image') {
-    return returnDownloadedImage(image, context);
+    const shouldCache = codeParam ? true : false;
+    return returnDownloadedImage(image, context, shouldCache);
   }
   return context.json(image);
 });

@@ -38,6 +38,7 @@ export async function downloadImageBuffer(url: string): Promise<ArrayBuffer> {
 export async function returnDownloadedImage(
   image: ImageResponse | null,
   context: Context,
+  cache: boolean = true,
 ): Promise<Response> {
   if (!image) {
     return context.text('No image found', 404);
@@ -54,7 +55,7 @@ export async function returnDownloadedImage(
     return new Response(imageBuffer, {
       headers: {
         'Content-Type': contentType,
-        'Cache-Control': 'public, max-age=31536000', // Cache for 1 year
+        'Cache-Control': cache ? 'public, max-age=31536000' : 'no-cache',
         'X-Identifier': identifier,
       },
     });
