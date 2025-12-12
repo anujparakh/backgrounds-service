@@ -1,9 +1,9 @@
 import { Hono } from 'hono';
+import { routes } from './routes';
+import { Env } from './types';
 
-const app = new Hono();
+const app = new Hono<{ Bindings: Env }>();
 
-app.get('/health', (context) => {
-  return context.text('HEALTHY');
-});
+app.route('/', routes);
 
 export default app;
