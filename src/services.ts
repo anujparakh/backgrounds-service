@@ -1,5 +1,6 @@
-import { ImageResponse, ImageSource, ChromecastImage, Env } from './types';
+import { ImageResponse, ImageSource, ChromecastImage, Env, VideoData } from './types';
 import imageData from './image-data.json';
+import videoData from './video-data.json';
 
 // -------------------
 // -- IMAGE GETTERS --
@@ -22,6 +23,9 @@ export async function getRandomBackgroundImage(
       }
 
       return result;
+    }
+    case ImageSource.APPLE: {
+      return getRandomVideo(env);
     }
     default:
       return null;
@@ -143,3 +147,28 @@ async function hydrateImageResponse(
 }
 
 const HOST_PLACEHOLDER = '{{host}}';
+
+// -------------------
+// -- VIDEO GETTERS --
+// -------------------
+
+function getRandomVideo(env: Env): ImageResponse | null {
+  const videos: VideoData[] = videoData as VideoData[];
+
+  if (videos.length === 0) {
+    return null;
+  }
+
+  const randomIndex = Math.floor(Math.random() * videos.length);
+  const video = videos[randomIndex]!;
+
+  const videoUrl = `${env.BACKGROUND_VIDEOS_URL || ''}/${video.filename}`;
+
+  return {
+    imageUrl: videoUrl,
+    source: ImageSource.APPLE,
+    metadata: {
+      filename: video.filename,
+    },
+  };
+}

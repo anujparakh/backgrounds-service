@@ -25,8 +25,8 @@ routes.get('/:source', async (context) => {
   const source = determineImageSource(sourceParam);
 
   // Validate type parameter
-  if (typeParam !== 'json' && typeParam !== 'image') {
-    return context.text('Invalid type parameter. Must be "json" or "image"', 400);
+  if (typeParam !== 'json' && typeParam !== 'image' && typeParam !== 'redirect') {
+    return context.text('Invalid type parameter. Must be "json", "image", or "redirect"', 400);
   }
 
   // Determine image to return
@@ -41,6 +41,9 @@ routes.get('/:source', async (context) => {
   }
 
   // Return based on type parameter
+  if (typeParam === 'redirect') {
+    return context.redirect(image.imageUrl);
+  }
   if (typeParam === 'image') {
     const shouldCache = codeParam ? true : false;
     return returnDownloadedImage(image, context, shouldCache);

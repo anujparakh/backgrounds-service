@@ -11,6 +11,7 @@ export type ImageResponse = {
 
 export type Env = {
   BACKGROUND_IMAGES_URL?: string;
+  BACKGROUND_VIDEOS_URL?: string;
 };
 
 export interface ChromecastImage {
@@ -22,4 +23,8 @@ export interface ChromecastImage {
   // original_url: string;
   // download_url: string;
   // gplus: string;
+}
+
+export interface VideoData {
+  filename: string;
 }
