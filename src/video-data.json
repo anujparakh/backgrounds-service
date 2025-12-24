@@ -1,5 +1,18 @@
 [
   {
-    "filename": "sequoia-sunrise.mov"
+    "filename": "sequoia-sunrise.mov",
+    "location": "Sequoia National Park, CA"
+  },
+  {
+    "filename": "redwood-aerial.mov",
+    "location": "Redwood National Forest, CA"
+  },
+  {
+    "filename": "golden-gate.mov",
+    "location": "San Francisco, CA"
+  },
+  {
+    "filename": "china-mountains.mov",
+    "location": "China"
   }
 ]

@@ -27,4 +27,5 @@ export interface ChromecastImage {
 
 export interface VideoData {
   filename: string;
+  location: string;
 }

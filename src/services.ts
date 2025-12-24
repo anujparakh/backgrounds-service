@@ -169,6 +169,7 @@ function getRandomVideo(env: Env): ImageResponse | null {
     source: ImageSource.APPLE,
     metadata: {
       filename: video.filename,
+      location: video.location,
     },
   };
 }
