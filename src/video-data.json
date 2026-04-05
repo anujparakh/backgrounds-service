@@ -1,18 +1,30 @@
 [
   {
+    "filename": "great-wall.mp4",
+    "location": "Great Wall, China"
+  },
+  {
+    "filename": "redwoods-aerial.mp4",
+    "location": "Redwood National Forest, CA"
+  },
+  {
+    "filename": "redwoods-river.mp4",
+    "location": "Redwood National Forest, CA"
+  },
+  {
+    "filename": "sequoia-night.mp4",
+    "location": "Sequoia National Park, CA"
+  },
+  {
     "filename": "sequoia-sunrise.mp4",
     "location": "Sequoia National Park, CA"
   },
   {
-    "filename": "redwood-aerial.mp4",
-    "location": "Redwood National Forest, CA"
+    "filename": "sonoma-clouds.mp4",
+    "location": "Sonoma, CA"
   },
   {
-    "filename": "golden-gate.mp4",
-    "location": "San Francisco, CA"
-  },
-  {
-    "filename": "china-mountains.mp4",
-    "location": "China"
+    "filename": "sonoma-river.mp4",
+    "location": "Sonoma, CA"
   }
 ]
