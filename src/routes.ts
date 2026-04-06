@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { ImageSource, Env, ImageResponse } from './types';
-import { getBackgroundImage, getRandomBackgroundImage } from './services';
+import { getBackgroundImage, getRandomBackgroundImage, getAllBackgroundImages } from './services';
 import { determineImageSource, returnDownloadedImage } from './utils';
 
 export const routes = new Hono<{ Bindings: Env }>();
@@ -13,6 +13,13 @@ export const routes = new Hono<{ Bindings: Env }>();
 routes.get('/', async (context) => {
   const image = await getRandomBackgroundImage(ImageSource.CHROMECAST, context.env);
   return returnDownloadedImage(image, context, false); // do not cache random images
+});
+
+// List all available data for a source
+routes.get('/:source/list', (context) => {
+  const sourceParam = context.req.param('source');
+  const source = determineImageSource(sourceParam);
+  return context.json(getAllBackgroundImages(source));
 });
 
 // Get random image by source

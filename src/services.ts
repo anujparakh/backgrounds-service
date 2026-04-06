@@ -32,6 +32,17 @@ export async function getRandomBackgroundImage(
   }
 }
 
+export function getAllBackgroundImages(source: ImageSource): object[] {
+  switch (source) {
+    case ImageSource.CHROMECAST:
+      return imageData as ChromecastImage[];
+    case ImageSource.APPLE:
+      return videoData as VideoData[];
+    default:
+      return [];
+  }
+}
+
 export async function getBackgroundImage(
   source: ImageSource,
   identifier: string,
