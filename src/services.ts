@@ -32,12 +32,22 @@ export async function getRandomBackgroundImage(
   }
 }
 
-export function getAllBackgroundImages(source: ImageSource): object[] {
+export function getAllBackgroundImages(source: ImageSource, env: Env): object[] {
   switch (source) {
-    case ImageSource.CHROMECAST:
-      return imageData as ChromecastImage[];
-    case ImageSource.APPLE:
-      return videoData as VideoData[];
+    case ImageSource.CHROMECAST: {
+      const images: ChromecastImage[] = imageData as ChromecastImage[];
+      return images.map((img) => ({
+        ...img,
+        imageUrl: `${env.BACKGROUND_IMAGES_URL || ''}/chromecast/background-${img.identifier}.${getImageFormat(img)}`,
+      }));
+    }
+    case ImageSource.APPLE: {
+      const videos: VideoData[] = videoData as VideoData[];
+      return videos.map((video) => ({
+        ...video,
+        imageUrl: `${env.BACKGROUND_VIDEOS_URL || ''}/${video.filename}`,
+      }));
+    }
     default:
       return [];
   }

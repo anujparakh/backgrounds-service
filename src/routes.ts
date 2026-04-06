@@ -19,7 +19,7 @@ routes.get('/', async (context) => {
 routes.get('/:source/list', (context) => {
   const sourceParam = context.req.param('source');
   const source = determineImageSource(sourceParam);
-  return context.json(getAllBackgroundImages(source));
+  return context.json(getAllBackgroundImages(source, context.env));
 });
 
 // Get random image by source
